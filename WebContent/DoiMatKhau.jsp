@@ -1,0 +1,153 @@
+<%@page import="model.user"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cập nhật thông tin cá nhân</title>
+    <link rel = "icon" href =  
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSdBRlApwJzrmOJsoEjKn4tHNPQ3UHNI1VYzA&usqp=CAU" 
+            type = "image/x-icon"> 
+            <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
+            <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js" type="text/javascript"></script>
+              <script src="js/Validation.js" type="text/javascript"></script>
+              <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+              <link rel="stylesheet" href="css/style.css"> 
+                  <link rel="stylesheet" href="css/all.css">
+              <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+              <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+              <script src="js/Validation.js" type="text/javascript"></script>
+</head>
+<body>
+    <div class="container-fluid ban1">
+        <div class="row">
+            <div class="col-12" >  <img src="images/b1.png" alt=""></div>
+            
+        </div>
+      </div>
+    <div class="container thoigian">
+        <label class="homnayla">Hôm nay là :</label>
+    <label id="hvn"></label>
+        <script>
+            var today = new Date();
+            var date ='Ngày ' + today.getDate()+' Tháng '+(today.getMonth()+1)+' năm '+today.getFullYear();
+ 
+            var dateTime = ' '+date;
+         
+            document.getElementById("hvn").innerHTML = dateTime;
+         </script>
+    </div>
+    <div class="container menu-banner">
+    <nav class="navbar navbar-expand-lg navbar-light menus">
+     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+           <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <a class="nav-link text-light font-weight-bold" href="SoYTeDaNang.jsp">TRANG CHỦ</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-light font-weight-bold" href="ThongKeCovid.jsp">THỐNG KÊ COVID-19</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-light font-weight-bold" href="SucKhoe.jsp">SỨC KHỎE</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-light font-weight-bold" href="ThongTinCaNhan.jsp">THÔNG TIN CÁ NHÂN </a>
+              </li>
+               <li class="nav-item">
+                <a class="nav-link text-light font-weight-bold" href="ThemNguoiThan.jsp">THÊM NGƯỜI THÂN</a>
+              </li>
+          </ul>
+                  <ul class="nav pull-right">
+                   <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle text-light font-weight-bold	" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-hospital-user"></i>- <% user adm =(user) session.getAttribute("adm"); out.print(adm.getUserName()); %>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="ThongTinCaNhan.jsp"> <i class="fas fa-id-card"></i> Thông tin cá nhân</a>
+                <a class="dropdown-item" href="TrangChu.jsp"><i class="fas fa-sign-out-alt"></i>Đăng xuất</a>
+                 
+           
+              </div>
+              </li>
+                  </ul>
+        </div>
+        </div>
+      </nav>    
+    </div>
+    <div class="container noidung">
+        <div class="tinnoibat">
+        <div class="tinnoibat1">
+        <h1><i class="far fa-newspaper"></i>Đổi mật khẩu</h1></div>
+    </div>
+    <h1 class="text-danger">Đổi mật khẩu</h1>
+    <form action="/FinalProject/updatePasswordSevlet" method="POST" id="demoForm"class="my-2 my-lg-0">
+
+	   <label>Họ và tên <span class="text-danger">(*)</span></label>
+      
+         <input type="text" name="name" readonly value="<%out.print(adm.getUserName());%>"  class="form-control  ml-sm-2  sss"><br>
+         <label for="inputAddress" >Số chứng minh thư <span class="text-danger">(*)</span></label>
+            <input type="text" name="cmnd" readonly value="<%out.print(adm.getUserCMND());%>" class="form-control  ml-sm-2  sss"><br>
+	<label>Số điện thoại <span class="text-danger">(*)</span></label>
+<input type="tel" name="Phone" readonly value="<%out.print(adm.getUserPhone());%>"  class="form-control   ml-sm-2  sss"><br>  
+<label>Mật khẩu mới <span class="text-danger">(*)</span></label>
+  <input type="password" value="<%out.print(adm.getUserPassword()); %>" placeholder="Mật khẩu" id="password" name="password1"class="form-control  ml-sm-2  sss"><br>
+  <label>Nhập lại mật khẩu  <span class="text-danger">(*)</span></label>
+  <input type="password" value="<%out.print(adm.getUserPassword()); %>" placeholder="Nhập lại Mật khẩu"  name="re-password" class="form-control  ml-sm-2  sss"><br>
+
+  <button type="submit" class="btn btn-primary">Đổi mật khẩu</button>
+      </form>
+    
+    
+<div class="lienhe row">
+  <div class="col icon1">
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#example">
+      <label class="text-danger" for=""></label><i class="fas fa-envelope"></i>
+    </button>
+
+</div> 
+</div>
+<div class="modal fade" id="example" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Trò chuyện của bác sĩ</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form action="/FinalProject/addTinNhanServlet" method="POST">
+      <div class="modal-body">
+        
+     
+        <label>Số điện thoại</label><input name="usPhone" type="tel" readonly value="<%out.print(adm.getUserPhone());%>"  class="form-control ml-sm-2S sss">
+        <label>Tin nhắn </label>
+        <textarea name="noidung" id="" cols="63" rows="5" placeholder="Nhập tin nhắn cần hỏi"></textarea>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+        <button type="submit" class="btn btn-primary">Gửi tin nhắn</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+</div>
+</body>
+<footer class="container-fluid ban">
+<div class="text-center">
+  <h4 style="color: white">TRANG TIN VỀ DỊCH BỆNH VIÊM ĐƯỜNG HÔ HẤP CẤP COVID-19</h4>
+  <p style="color: white">
+    Trang thông tin điện tử Sở Y tế thành phố Đà Nẵng <br> Địa chỉ:
+    Tầng 23 Trung tâm Hành chính thành phố Đà Nẵng, 24 Trần Phú, phường
+    Thạch Thang, quận Hải Châu, thành phố Đà Nẵng <br> Điện thoại:
+    0236 3821206 Fax: 0236 3826276 E-mail: syt@danang.gov.vn
+
+  </p>
+</div>
+</footer>
+</html>
